@@ -424,4 +424,56 @@ service CatalogService {
         expect(openAPI.externalDocs.url).toBe('https://help.sap.com/docs/product/123.html');
   }
   );
+
+  test('OpenAPI annotations: @OpenAPI.Extensions annotation is added to the openapi document', () => {
+    const csn = cds.compile.to.csn(`
+      namespace sap.OpenAPI.test;
+      @OpenAPI.Extensions: {
+        ![compliance-level]: 'sap:base:v1',
+        ![x-sap-ext-overview]: {
+          name    : 'Communication Scenario',
+          values: {
+            text   : 'Planning Calendar API Integration',
+            format: 'plain'
+    }
+  }
+    }
+      service A {
+      @OpenAPI.Extensions: {
+        ![dpp-is-potentially-sensitive]: 'true'
+      }
+        entity E1 { 
+          key id: String(4); 
+          oid: String(128); 
+        }
+        
+        @OpenAPI.Extensions: {
+        ![x-sap-operation-intent]: 'read-collection for function',
+        ![sap-deprecated-operation] : {
+          deprecationDate: '2022-12-31',
+          successorOperationId: 'successorOperation',
+          notValidKey: 'notValidValue'  
+        }
+      }
+        function F1(param: String) returns String;
+
+        @OpenAPI.Extensions: {
+        ![x-sap-operation-intent]: 'read-collection for action'
+    }
+        action A1(param: String) returns String;
+          
+          }`);
+    const openAPI = toOpenApi(csn);
+    expect(openAPI).toBeDefined();
+    expect(openAPI['x-sap-compliance-level']).toBe('sap:base:v1');
+    expect(openAPI['x-sap-ext-overview'].name).toBe('Communication Scenario');
+    expect(openAPI['x-sap-ext-overview'].values.text).toBe('Planning Calendar API Integration');
+    expect(openAPI['x-sap-ext-overview'].values.format).toBe('plain');
+    expect(openAPI.components.schemas["sap.OpenAPI.test.A.E1"]["x-sap-dpp-is-potentially-sensitive"]).toBe('true');
+    expect(openAPI.paths["/F1"].get["x-sap-operation-intent"]).toBe('read-collection for function');
+    expect(openAPI.paths["/A1"].post["x-sap-operation-intent"]).toBe('read-collection for action');
+    expect(openAPI.paths["/F1"].get["x-sap-deprecated-operation"].deprecationDate).toBe('2022-12-31');
+    expect(openAPI.paths["/F1"].get["x-sap-deprecated-operation"].successorOperationId).toBe('successorOperation');
+    expect(openAPI.paths["/F1"].get["x-sap-deprecated-operation"].notValidKey).toBeUndefined();
+  });
 });
