@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Version 1.2.0 - tbd
 
+### Added
+
+- Now supports `@EntityRelationship` annotations.
+
+### Fixed
+
 - Fixed action/function invocation on navigation path to align with CAP runtime.
 
 ## Version 1.1.2 - 27.01.2025
