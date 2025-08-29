@@ -24,19 +24,29 @@ This document outlines the improvements made to the @cap-js/openapi repository t
 - Added Jest configuration for TypeScript
 - Implemented build scripts with watch mode
 
-### 3. Modularization (In Progress) 🚧
+### 3. Modularization ✅
 - Created module structure:
   ```
   lib/compile/modules/
-  ├── constants/      # Extracted constants and configuration
+  ├── constants/      # Extracted constants and configuration ✅
   ├── utils/          # Utility functions
-  │   ├── naming.js   # Name processing utilities
-  │   ├── errors.js   # Error handling utilities
-  │   └── logger.js   # Logging utilities
-  ├── validators/     # Validation functions
-  ├── converters/     # Type conversion functions
+  │   ├── naming.js   # Name processing utilities ✅
+  │   ├── errors.js   # Error handling utilities ✅
+  │   └── logger.js   # Logging utilities ✅
+  ├── validators/     # Validation functions ✅
+  ├── converters/     # Type conversion functions (planned)
   └── builders/       # OpenAPI builders
+      ├── paths.js       # Path building functions ✅
+      ├── parameters.js  # Parameter building functions ✅
+      ├── responses.js   # Response building functions ✅
+      └── schemas.js     # Schema building functions (in progress)
   ```
+- Successfully extracted and modularized:
+  - Path building functions (navigationPaths, pathValuePrefix/Suffix, etc.)
+  - Parameter building functions (query options, component parameters)
+  - Response building functions (collection/entity/operation responses)
+- Removed duplicate function definitions from main file
+- All tests passing after refactoring
 
 ### 4. Error Handling Improvements ✅
 - Created custom error classes:

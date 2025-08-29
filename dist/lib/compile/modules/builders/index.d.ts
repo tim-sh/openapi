@@ -1,0 +1,37 @@
+declare const _exports: {
+    collectionResponse: typeof responses.collectionResponse;
+    entityResponse: typeof responses.entityResponse;
+    operationResponse: typeof responses.operationResponse;
+    errorResponse: typeof responses.errorResponse;
+    countResponse: typeof responses.countResponse;
+    batchResponse: typeof responses.batchResponse;
+    buildStandardResponses: typeof responses.buildStandardResponses;
+    getTypeSchema: typeof responses.getTypeSchema;
+    getEdmTypeSchema: typeof responses.getEdmTypeSchema;
+    withETag: typeof responses.withETag;
+    addQueryOptions: typeof parameters.addQueryOptions;
+    optionTop: typeof parameters.optionTop;
+    optionSkip: typeof parameters.optionSkip;
+    optionCount: typeof parameters.optionCount;
+    optionFilter: typeof parameters.optionFilter;
+    optionOrderBy: typeof parameters.optionOrderBy;
+    optionSearch: typeof parameters.optionSearch;
+    optionSelect: typeof parameters.optionSelect;
+    optionExpand: typeof parameters.optionExpand;
+    buildComponentParameters: typeof parameters.buildComponentParameters;
+    pathValuePrefix: typeof paths.pathValuePrefix;
+    pathValueSuffix: typeof paths.pathValueSuffix;
+    navigationPropertyPath: typeof paths.navigationPropertyPath;
+    propertyPath: typeof paths.propertyPath;
+    navigationPaths: typeof paths.navigationPaths;
+    navigationPathMap: typeof paths.navigationPathMap;
+    primitivePaths: typeof paths.primitivePaths;
+    entryToProperty: typeof paths.entryToProperty;
+    buildKeyParameters: typeof paths.buildKeyParameters;
+    buildPathWithKeys: typeof paths.buildPathWithKeys;
+};
+export = _exports;
+import responses = require("./responses");
+import parameters = require("./parameters");
+import paths = require("./paths");
+//# sourceMappingURL=index.d.ts.map
