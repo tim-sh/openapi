@@ -489,6 +489,7 @@ describe('Edge cases', function () {
             }
         };
         const openapi = lib.csdl2openapi(csdl, {});
+        console.log('Available schemas:', Object.keys(openapi.components.schemas || {}));
         assert.deepStrictEqual(
           openapi.components.schemas["jsonExamples.typeDefinitionOld"],
           {
