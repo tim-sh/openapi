@@ -7,8 +7,11 @@ var pluralize = require('pluralize');
 const DEBUG = cds.debug('openapi'); // Initialize cds.debug with the 'openapi'
 // Import modularized components
 const constants = require('./modules/constants');
-const { nameParts, isIdentifier, splitName, namespaceQualifiedName } = require('./modules/utils/naming');
+const { nameParts, isIdentifier, splitName, namespaceQualifiedName, enumMember } = require('./modules/utils/naming');
 const validators = require('./modules/validators');
+const { pathValuePrefix, pathValueSuffix, navigationPropertyPath, propertyPath, navigationPaths, navigationPathMap, primitivePaths, buildKeyParameters, buildPathWithKeys } = require('./modules/builders/paths');
+const { addQueryOptions, optionTop, optionSkip, optionCount, optionFilter, optionOrderBy, optionSearch, optionSelect, optionExpand, buildComponentParameters } = require('./modules/builders/parameters');
+const { collectionResponse, entityResponse, operationResponse, errorResponse, countResponse, batchResponse, buildStandardResponses, getTypeSchema, getEdmTypeSchema, withETag } = require('./modules/builders/responses');
 //TODO
 // - Core.Example for complex types
 // - reduce number of loops over schemas
@@ -212,7 +215,7 @@ module.exports.csdl2openapi = function (csdl, { url: serviceRoot, servers: serve
                     });
                 }
                 else if (element.$BaseType) {
-                    const base = namespaceQualifiedName(element.$BaseType);
+                    const base = namespaceQualifiedName(element.$BaseType, namespace);
                     if (!derivedTypes[base])
                         derivedTypes[base] = [];
                     derivedTypes[base].push(qualifiedName);
@@ -1359,7 +1362,7 @@ see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-prot
                 }
             }
             const propertyType = property.$Type;
-            segment += pathValuePrefix(propertyType) + '{' + parameter + suffix + '}' + pathValueSuffix(propertyType);
+            segment += pathValuePrefix(propertyType, keyAsSegment) + '{' + parameter + suffix + '}' + pathValueSuffix(propertyType, keyAsSegment);
             const param = {
                 description: [property[voc.Core.Description], property[voc.Core.LongDescription]].filter(t => t).join('  \n')
                     || 'key: ' + parameter,
@@ -1371,34 +1374,6 @@ see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-prot
             params.push(param);
         });
         return { segment: (keyAsSegment ? '' : '(') + segment + (keyAsSegment ? '' : ')'), parameters: params };
-    }
-    /**
-      * Prefix for key value in key segment
-      * @param {typename} Qualified name of key property type
-      * @return {string} value prefix
-      */
-    function pathValuePrefix(typename) {
-        //TODO: handle other Edm types, enumeration types, and type definitions
-        if (['Edm.Int64', 'Edm.Int32', 'Edm.Int16', 'Edm.SByte', 'Edm.Byte',
-            'Edm.Double', 'Edm.Single', 'Edm.Date', 'Edm.DateTimeOffset', 'Edm.Guid'].includes(typename))
-            return '';
-        if (keyAsSegment)
-            return '';
-        return `'`;
-    }
-    /**
-     * Suffix for key value in key segment
-     * @param {typename} Qualified name of key property type
-     * @return {string} value prefix
-     */
-    function pathValueSuffix(typename) {
-        //TODO: handle other Edm types, enumeration types, and type definitions
-        if (['Edm.Int64', 'Edm.Int32', 'Edm.Int16', 'Edm.SByte', 'Edm.Byte',
-            'Edm.Double', 'Edm.Single', 'Edm.Date', 'Edm.DateTimeOffset', 'Edm.Guid'].includes(typename))
-            return '';
-        if (keyAsSegment)
-            return '';
-        return `'`;
     }
     /**
      * Add path and Path Item Object for actions and functions bound to the element
@@ -1546,7 +1521,7 @@ see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-prot
                     + 'URL-encoded JSON '
                     + (p.$Collection ? 'array with items ' : '')
                     + 'of type '
-                    + namespaceQualifiedName(p.$Type || 'Edm.String')
+                    + namespaceQualifiedName(p.$Type || 'Edm.String', namespace)
                     + ', see [Complex and Collection Literals](https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part2-url-conventions.html#sec_ComplexandCollectionLiterals)';
                 param.example = p.$Collection ? '[]' : '{}';
             }
@@ -2270,11 +2245,11 @@ see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-prot
         }
         if (forFunction) {
             if (s.example && typeof s.example === "string") {
-                s.example = `${pathValuePrefix(element.$Type)}${s.example}${pathValueSuffix(element.$Type)} `;
+                s.example = `${pathValuePrefix(element.$Type, keyAsSegment)}${s.example}${pathValueSuffix(element.$Type, keyAsSegment)} `;
             }
             if (s.pattern) {
-                const pre = pathValuePrefix(element.$Type);
-                const suf = pathValueSuffix(element.$Type);
+                const pre = pathValuePrefix(element.$Type, keyAsSegment);
+                const suf = pathValueSuffix(element.$Type, keyAsSegment);
                 s.pattern = s.pattern.replace(/^\^/, `^ ${pre} (`);
                 s.pattern = s.pattern.replace(/\$$/, `)${suf} $`);
             }
@@ -2474,36 +2449,6 @@ see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-prot
             s[scheme.Authorization] = scheme.RequiredScopes || [];
             openapi.security.push(s);
         });
-    }
-    /**
-     * a qualified name consists of a namespace or alias, a dot, and a simple name
-     * @param {string} qualifiedName
-     * @return {string} namespace-qualified name
-     */
-    function namespaceQualifiedName(qualifiedName) {
-        let np = nameParts(qualifiedName);
-        return namespace[np.qualifier] + '.' + np.name;
-    }
-    /**
-     * a qualified name consists of a namespace or alias, a dot, and a simple name
-     * @param {string} qualifiedName
-     * @return {object} with components qualifier and name
-     */
-    function nameParts(qualifiedName) {
-        const pos = qualifiedName.lastIndexOf('.');
-        console.assert(pos > 0, 'Invalid qualified name ' + qualifiedName);
-        return {
-            qualifier: qualifiedName.substring(0, pos),
-            name: qualifiedName.substring(pos + 1)
-        };
-    }
-    /**
-     * an identifier does not start with $ and does not contain @
-     * @param {string} name
-     * @return {boolean} name is an identifier
-     */
-    function isIdentifier(name) {
-        return !name.startsWith('$') && !name.includes('@');
     }
 };
 //# sourceMappingURL=csdl2openapi.js.map

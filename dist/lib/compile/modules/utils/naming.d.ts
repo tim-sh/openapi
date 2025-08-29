@@ -26,4 +26,10 @@ export function splitName(name: string): string;
  * @return {string} namespace-qualified name
  */
 export function namespaceQualifiedName(qualifiedName: string, namespace: object): string;
+/**
+ * Unpack EnumMember value if it uses CSDL JSON CS01 style
+ * @param {string|object} member Enum member value
+ * @return {string} Unpacked enum member
+ */
+export function enumMember(member: string | object): string;
 //# sourceMappingURL=naming.d.ts.map

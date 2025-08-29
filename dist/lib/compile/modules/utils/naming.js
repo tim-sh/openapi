@@ -41,10 +41,22 @@ function namespaceQualifiedName(qualifiedName, namespace) {
     let np = nameParts(qualifiedName);
     return namespace[np.qualifier] + '.' + np.name;
 }
+/**
+ * Unpack EnumMember value if it uses CSDL JSON CS01 style
+ * @param {string|object} member Enum member value
+ * @return {string} Unpacked enum member
+ */
+function enumMember(member) {
+    if (typeof member == 'string')
+        return member;
+    else if (typeof member == 'object')
+        return member.$EnumMember;
+}
 module.exports = {
     nameParts,
     isIdentifier,
     splitName,
-    namespaceQualifiedName
+    namespaceQualifiedName,
+    enumMember
 };
 //# sourceMappingURL=naming.js.map
