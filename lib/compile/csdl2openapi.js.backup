@@ -813,7 +813,7 @@ module.exports.csdl2openapi = function (
                     required: true,
                     content: {
                         'application/json': {
-                            schema: typeRef(element.$Type, SUFFIX.create),
+                            schema: ref(element.$Type, SUFFIX.create),
                         }
                     }
                 },
@@ -1340,7 +1340,7 @@ see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-prot
                     required: true,
                     content: {
                         'application/json': {
-                            schema: typeRef(element.$Type, SUFFIX.update),
+                            schema: ref(element.$Type, SUFFIX.update),
                         }
                     }
                 },
@@ -1877,7 +1877,7 @@ see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-prot
             switch (type.$Kind) {
                 case "ComplexType":
                 case "EntityType":
-                    schemasForStructuredType(unordered, r.namespace, r.name, type, r.suffix, { csdl, voc, typesToInline, requiredSchemas, namespace, derivedTypes });
+                    schemasForStructuredType(unordered, r.namespace, r.name, type, r.suffix, { csdl, voc, typesToInline, requiredSchemas, namespace });
                     break;
                 case "EnumType":
                     schemaForEnumerationType(unordered, r.namespace, r.name, type, { csdl, voc, typesToInline, requiredSchemas, namespace });
@@ -1947,13 +1947,147 @@ see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-prot
         }
     }
 
+    /**
+     * Construct Schema Objects for an enumeration type
+     * @param {object} schemas Map of Schema Objects to augment
+     * @param {string} qualifier Qualifier for structured type
+     * @param {string} name Simple name of structured type
+     * @param {object} type Structured type
+     * @return {object} Map of Schemas Objects
+     */
+    function schemaForEnumerationType(schemas, qualifier, name, type) {
+        const members = [];
+        Object.keys(type).filter(iName => isIdentifier(iName)).forEach(iName2 => {
+            members.push(iName2);
+        });
+
+        const s = {
+            type: 'string',
+            title: name,
+            enum: members
+        };
+        const description = type[voc.Core.LongDescription];
+        if (description) s.description = description;
+        schemas[qualifier + '.' + name] = s;
+    }
+
+    /**
+     * Construct Schema Objects for a type definition
+     * @param {object} schemas Map of Schema Objects to augment
+     * @param {string} qualifier Qualifier for structured type
+     * @param {string} name Simple name of structured type
+     * @param {object} type Structured type
+     * @return {object} Map of Schemas Objects
+     */
+    function schemaForTypeDefinition(schemas, qualifier, name, type) {
+        const s = getSchema(Object.assign({ $Type: type.$UnderlyingType }, type));
+        s.title = name;
+        const description = type[voc.Core.LongDescription];
+        if (description) s.description = description;
+        schemas[qualifier + '.' + name] = s;
+    }
+
+    /**
+     * Construct Schema Objects for a structured type
+     * @param {object} schemas Map of Schema Objects to augment
+     * @param {string} qualifier Qualifier for structured type
+     * @param {string} name Simple name of structured type
+     * @param {string} suffix Suffix for read/create/update
+     * @param {object} type Structured type
+     * @return {object} Map of Schemas Objects
+     */
+    function schemasForStructuredType(schemas, qualifier, name, type, suffix) {
+        const schemaName = qualifier + "." + name + suffix;
+        const baseName = qualifier + "." + name;
+        const isKey = keyMap(type);
+        const required = Object.keys(isKey);
+        const schemaProperties = {};
+        let isCount = true;
+        if (csdl[qualifier]?.$Annotations) {
+            const annotations = csdl[qualifier].$Annotations[`${qualifier}.EntityContainer/${name}`];
+            if (annotations && annotations[voc.Capabilities.CountRestrictions] && annotations[voc.Capabilities.CountRestrictions]?.Countable === false) {
+                isCount = false;
+            }
+        }
+        const properties = propertiesOfStructuredType(type);
+        Object.keys(properties).forEach(iName => {
+            const property = properties[iName];
+            if (suffix === SUFFIX.read) schemaProperties[iName] = getSchema(property);
+            if ((Object.prototype.hasOwnProperty.call(property, '@Common.FieldControl')) && property['@Common.FieldControl'] === 'Mandatory') { required.push(iName) }
+            if (property.$Kind == 'NavigationProperty') {
+                if (property.$Collection && suffix === "" && isCount === true) {
+                    schemaProperties[`${iName}@${csdl.$Version === '4.0' ? 'odata.' : ''}count`] = ref('count');
+                }
+                if (property[voc.Core.Permissions] != "Read" && !property[voc.Core.Computed] && (property.$ContainsTarget || property.$OnDelete === 'Cascade')) {
+                    if (suffix === SUFFIX.create)
+                        schemaProperties[iName] = getSchema(property, SUFFIX.create);
+                    if (suffix === SUFFIX.update)
+                        schemaProperties[iName] = getSchema(property, SUFFIX.create);
+                }
+            } else {
+                if (property[voc.Core.Permissions] === "Read" || property[voc.Core.Computed] || property[voc.Core.ComputedDefaultValue]) {
+                    let index = required.indexOf(iName);
+                    if (index != -1) required.splice(index, 1);
+                }
+                if (!(property[voc.Core.Permissions] === "Read" || property[voc.Core.Computed])) {
+                    if (suffix === SUFFIX.create)
+                        schemaProperties[iName] = getSchema(property, SUFFIX.create);
+                    if (suffix === SUFFIX.update && !isKey[iName] && !property[voc.Core.Immutable])
+                        schemaProperties[iName] = getSchema(property, SUFFIX.update);
+                }
+            }
+        });
 
 
+        schemas[schemaName] = {
+            title: (type[voc.Core.Description] || name) + TITLE_SUFFIX[suffix],
+            type: 'object'
+        };
+        if (Object.keys(schemaProperties).length > 0)
+            schemas[schemaName].properties = schemaProperties;
 
+        if (suffix === SUFFIX.read && type["@ODM.root"]) schemas[schemaName]["x-sap-root-entity"] = type["@ODM.root"]
+        odmExtensions(type, schemas[schemaName]);
+        erExtensions(type, schemas[schemaName]);
 
+        if (suffix === SUFFIX.create && required.length > 0)
+            schemas[schemaName].required = [...new Set(required)];
 
+        const description = type[voc.Core.LongDescription];
+        if (description) {
+            schemas[schemaName].description = description;
+        }
 
+        if (derivedTypes[baseName]) {
+            schemas[schemaName].anyOf = [];
+            derivedTypes[baseName].forEach((derivedType) => {
+                schemas[schemaName].anyOf.push(ref(derivedType, suffix));
+            });
+            if (!type.$Abstract) schemas[schemaName].anyOf.push({});
+        }
+    }
 
+    /**
+     * Add ODM extensions to OpenAPI schema for a structured type
+     * @param {object} type Structured type
+     * @param {object} schema OpenAPI schema to augment
+     */
+    function odmExtensions(type, schema) {
+        for (const [annotation, openApiExtension] of Object.entries(ODM_ANNOTATIONS)) {
+            if (type[annotation]) schema[openApiExtension] = type[annotation];
+        }
+    }
+
+    /**
+     * Add entity relationship extensions to OpenAPI schema for a structured type
+     * @param {object} type Structured type
+     * @param {object} schema OpenAPI schema to augment
+     */
+    function erExtensions(type, schema) {
+        for (const [annotation, openApiExtension] of Object.entries(ER_ANNOTATIONS)) {
+            if (type[annotation]) schema[openApiExtension] = type[annotation];
+        }
+    }
 
     /**
      * Collect all properties of a structured type along the inheritance hierarchy
@@ -2084,9 +2218,266 @@ see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-prot
         };
     }
 
+    /**
+     * Construct Schema Object for model object referencing a type
+     * @param {object} modelElement referencing a type
+     * @return {object} Schema Object
+     */
+    function getSchema(element, suffix = '', forParameter = false, forFunction = false) {
+        let s = {};
+        switch (element.$Type) {
+            case 'Edm.AnnotationPath':
+            case 'Edm.ModelElementPath':
+            case 'Edm.NavigationPropertyPath':
+            case 'Edm.PropertyPath':
+                s.type = 'string';
+                break;
+            case 'Edm.Binary':
+                s = {
+                    type: 'string',
+                    format: 'base64url'
+                };
+                if (element.$MaxLength) s.maxLength = Math.ceil(4 * element.$MaxLength / 3);
+                break;
+            case 'Edm.Boolean':
+                s.type = 'boolean';
+                break;
+            case 'Edm.Byte':
+                s = {
+                    type: 'integer',
+                    format: 'uint8'
+                };
+                break;
+            case 'Edm.Date':
+                s = {
+                    type: 'string',
+                    format: 'date',
+                    example: '2017-04-13'
+                };
+                break;
+            case 'Edm.DateTime':
+            case 'Edm.DateTimeOffset':
+                s = {
+                    type: 'string',
+                    format: 'date-time',
+                    example: '2017-04-13T15:51:04' + (isNaN(element.$Precision) || element.$Precision === 0 ? '' : '.' + '0'.repeat(element.$Precision)) + 'Z'
+                };
+                break;
+            case 'Edm.Decimal':
+                s = {
+                    anyOf: [{ type: 'number', format: 'decimal' }, { type: 'string' }],
+                    example: 0
+                };
+                if (!isNaN(element.$Precision)) s['x-sap-precision'] = element.$Precision;
+                if (!isNaN(element.$Scale)) s['x-sap-scale'] = element.$Scale;
+                // eslint-disable-next-line no-case-declarations
+                let scale = !isNaN(element.$Scale) ? element.$Scale : null;
+                if (scale !== null) {
+                    // Node.js 12.13.0 has problems with negative exponents, 10 ** -5 --> 0.000009999999999999999
+                    if (scale <= 0)
+                        s.anyOf[0].multipleOf = 10 ** -scale;
+                    else
+                        s.anyOf[0].multipleOf = 1 / 10 ** scale;
+                }
+                if (element.$Precision < 16) {
+                    let limit = 10 ** (element.$Precision - scale);
+                    let delta = 10 ** -scale;
+                    s.anyOf[0].maximum = limit - delta;
+                    s.anyOf[0].minimum = -s.anyOf[0].maximum;
+                }
+                break;
+            case 'Edm.Double':
+                s = {
+                    anyOf: [{ type: 'number', format: 'double' }, { type: 'string' }],
+                    example: 3.14
+                };
+                break;
+            case 'Edm.Duration':
+                s = {
+                    type: 'string',
+                    format: 'duration',
+                    example: 'P4DT15H51M04S'
+                };
+                break;
+            case 'Edm.GeographyPoint':
+            case 'Edm.GeometryPoint':
+                s = ref('geoPoint');
+                typesToInline.geoPoint = true;
+                break;
+            case 'Edm.Guid':
+                s = {
+                    type: 'string',
+                    format: 'uuid',
+                    example: '01234567-89ab-cdef-0123-456789abcdef'
+                };
+                break;
+            case 'Edm.Int16':
+                s = {
+                    type: 'integer',
+                    format: 'int16'
+                };
+                break;
+            case 'Edm.Int32':
+                s = {
+                    type: 'integer',
+                    format: 'int32'
+                };
+                break;
+            case 'Edm.Int64':
+                s = {
+                    anyOf: [{ type: 'integer', format: 'int64' }, { type: 'string' }],
+                    example: "42"
+                };
+                break;
+            case 'Edm.PrimitiveType':
+                s = {
+                    anyOf: [{ type: 'boolean' }, { type: 'number' }, { type: 'string' }]
+                };
+                break;
+            case 'Edm.SByte':
+                s = {
+                    type: 'integer',
+                    format: 'int8'
+                };
+                break;
+            case 'Edm.Single':
+                s = {
+                    anyOf: [{ type: 'number', format: 'float' }, { type: 'string' }],
+                    example: 3.14
+                };
+                break;
+            case 'Edm.Stream':
+                // eslint-disable-next-line no-case-declarations
+                let jsonSchema = element[voc.JSON.Schema];
+                if (jsonSchema) {
+                    if (typeof jsonSchema == 'string')
+                        s = JSON.parse(jsonSchema);
+                    else
+                        s = jsonSchema;
+                } else {
+                    s = {
+                        type: 'string',
+                        format: 'base64url'
+                    };
+                }
+                break;
+            case 'Edm.String':
+            case undefined:
+                s.type = 'string';
+                if (element.$MaxLength) s.maxLength = element.$MaxLength;
+                getPattern(s, element);
+                break;
+            case 'Edm.TimeOfDay':
+                s = {
+                    type: 'string',
+                    format: 'time',
+                    example: '15:51:04'
+                };
+                break;
+            default:
+                if (element.$Type.startsWith('Edm.')) {
+                    DEBUG?.('Unknown type: ' + element.$Type);
+                } else {
+                    let type = modelElement(element.$Type);
+                    let isStructured = type && ['ComplexType', 'EntityType'].includes(type.$Kind);
+                    s = ref(element.$Type, (isStructured ? suffix : ''));
+                    if (element.$MaxLength) {
+                        s = {
+                            allOf: [s],
+                            maxLength: element.$MaxLength
+                        };
+                    }
+                }
+        }
 
+        allowedValues(s, element);
 
+        if (element.$Nullable) {
+            if (s.$ref) s = { allOf: [s] };
+            s.nullable = true;
+        }
 
+        if (element.$DefaultValue !== undefined) {
+            if (s.$ref) s = { allOf: [s] };
+            s.default = element.$DefaultValue;
+        }
+
+        if (element[voc.Core.Example]) {
+            if (s.$ref) s = { allOf: [s] };
+            s.example = element[voc.Core.Example].Value;
+        }
+
+        if (forFunction) {
+            if (s.example && typeof s.example === "string") {
+                s.example = `${pathValuePrefix(element.$Type, keyAsSegment)}${s.example
+                    }${pathValueSuffix(element.$Type, keyAsSegment)} `;
+            }
+            if (s.pattern) {
+                const pre = pathValuePrefix(element.$Type, keyAsSegment);
+                const suf = pathValueSuffix(element.$Type, keyAsSegment);
+                s.pattern = s.pattern.replace(/^\^/, `^ ${pre} (`);
+                s.pattern = s.pattern.replace(/\$$/, `)${suf} $`);
+            } else if (!element.$Type || element.$Type === "Edm.String") {
+                s.pattern = "^'([^']|'')*'$";
+            }
+            if (element.$Nullable) {
+                s.default = "null";
+                if (s.pattern) {
+                    s.pattern = s.pattern.replace(/^\^/, "^(null|");
+                    s.pattern = s.pattern.replace(/\$$/, ")$");
+                }
+            }
+        }
+
+        if (element[voc.Validation.Maximum] != undefined) {
+            if (s.$ref) s = { allOf: [s] };
+            if (s.anyOf) {
+                s.anyOf[0].maximum = element[voc.Validation.Maximum];
+            }
+            if (element[voc.Validation.Maximum + voc.Validation.Exclusive]) s.exclusiveMaximum = true;
+        }
+
+        if (element[voc.Validation.Minimum] != undefined) {
+            if (s.$ref) s = { allOf: [s] };
+            if (s.anyOf) {
+                s.anyOf[0].minimum = element[voc.Validation.Minimum];
+            }
+            if (element[voc.Validation.Minimum + voc.Validation.Exclusive]) s.exclusiveMinimum = true;
+        }
+
+        if (element.$Collection) {
+            s = {
+                type: 'array',
+                items: s
+            };
+        }
+
+        if (!forParameter && element[voc.Core.LongDescription]) {
+            if (s.$ref) s = { allOf: [s] };
+            s.description = element[voc.Core.LongDescription];
+        }
+
+        if (element['@ODM.oidReference']?.entityName) {
+            s['x-sap-odm-oid-reference-entity-name'] = element['@ODM.oidReference'].entityName
+        }
+
+        for (const key in element) {
+            if (key.startsWith(ER_ANNOTATION_PREFIX) && ER_ANNOTATIONS[key]) {
+                s[ER_ANNOTATIONS[key]] = element[key];
+            }
+        }
+        return s;
+    }
+
+    /**
+     * Add allowed values enum to Schema Object for string-like model element
+     * @param {object} schema Schema Object to augment
+     * @param {object} element Model element
+     */
+    function allowedValues(schema, element) {
+        const values = element[voc.Validation.AllowedValues];
+        if (values) schema.enum = values.map(record => record.Value);
+    }
 
     /**
      * Add pattern to Schema Object for string-like model element
@@ -2104,7 +2495,7 @@ see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-prot
      * @param {string} suffix Optional suffix for referenced schema
      * @return {object} Reference Object
      */
-    function typeRef(typename, suffix = '') {
+    function ref(typename, suffix = '') {
         let name = typename;
         let nsp = '';
         let url = '';
