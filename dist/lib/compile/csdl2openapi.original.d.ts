@@ -1,0 +1,2 @@
+export function csdl2openapi(csdl: object, { url: serviceRoot, servers: serversObject, odataVersion: odataVersion, scheme: scheme, host: host, basePath: basePath, diagram: diagram, maxLevels: maxLevels }?: object): object;
+//# sourceMappingURL=csdl2openapi.original.d.ts.map

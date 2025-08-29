@@ -1,0 +1,12 @@
+
+> @cap-js/openapi@1.2.3 test
+> npx jest --silent
+
+PASS test/lib/compile/openapi.test.js
+PASS test/lib/compile/csdl2openapi.test.js
+
+Test Suites: 2 passed, 2 total
+Tests:       61 passed, 61 total
+Snapshots:   0 total
+Time:        0.62 s, estimated 1 s
+Exit code: 0
