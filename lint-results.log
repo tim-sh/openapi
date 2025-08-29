@@ -1,0 +1,775 @@
+
+> @cap-js/openapi@1.2.3 lint
+> npx eslint .
+
+
+/workspace/dist/index.js
+  2:1  warning  Unexpected var, use let or const instead  no-var
+
+/workspace/dist/lib/compile/csdl2openapi.js
+     6:1    warning  Unexpected var, use let or const instead                                                  no-var
+    10:9    warning  'nameParts' is assigned a value but never used                                            no-unused-vars
+    10:20   warning  'isIdentifier' is assigned a value but never used                                         no-unused-vars
+    10:34   warning  'splitName' is assigned a value but never used                                            no-unused-vars
+    10:45   warning  'namespaceQualifiedName' is assigned a value but never used                               no-unused-vars
+    11:7    warning  'validators' is assigned a value but never used                                           no-unused-vars
+    35:31   warning  Function has too many lines (1978). Maximum allowed is 100                                max-lines-per-function
+    52:13   warning  'serviceName' is never reassigned. Use 'const' instead                                    prefer-const
+    55:21   warning  'type' is never reassigned. Use 'const' instead                                           prefer-const
+    57:21   warning  Expected { after 'if' condition                                                           curly
+    83:13   warning  'extensionObj' is never reassigned. Use 'const' instead                                   prefer-const
+   107:13   warning  'extensionEnums' is never reassigned. Use 'const' instead                                 prefer-const
+   115:13   warning  'extenstionSchema' is never reassigned. Use 'const' instead                               prefer-const
+   144:25   warning  Blocks are nested too deeply (5). Maximum allowed is 4                                    max-depth
+   184:5    warning  Function 'preProcess' has too many parameters (7). Maximum allowed is 5                   max-params
+   210:29   warning  Expected { after 'if' condition                                                           curly
+   217:25   warning  Expected { after 'if' condition                                                           curly
+   226:26   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   231:25   warning  'args' is never reassigned. Use 'const' instead                                           prefer-const
+   232:74   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   233:43   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   234:30   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   235:41   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   236:34   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   245:40   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   262:49   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   263:37   warning  Blocks are nested too deeply (5). Maximum allowed is 4                                    max-depth
+   264:41   warning  Expected { after 'if' condition                                                           curly
+   267:92   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   306:57   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   307:21   warning  Expected { after 'if' condition                                                           curly
+   355:13   warning  'externalDocs' is never reassigned. Use 'const' instead                                   prefer-const
+   374:13   warning  'color' is never reassigned. Use 'const' instead                                          prefer-const
+   382:52   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   386:40   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   386:86   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   388:142  warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   392:52   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   395:52   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   433:21   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   544:17   warning  Expected { after 'if' condition                                                           curly
+   558:17   warning  'child' is never reassigned. Use 'const' instead                                          prefer-const
+   577:13   warning  Expected { after 'if' condition                                                           curly
+   593:5    warning  Function 'pathItems' has too many parameters (10). Maximum allowed is 5                   max-params
+   601:13   warning  Expected { after 'if' condition                                                           curly
+   610:21   warning  Expected { after 'if' condition                                                           curly
+   624:13   warning  Expected { after 'if' condition                                                           curly
+   634:129  warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   670:5    warning  Function 'pathItemsWithKey' has too many parameters (12). Maximum allowed is 5            max-params
+   671:91   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   672:41   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   672:80   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   687:21   warning  Expected { after 'if' condition                                                           curly
+   704:5    warning  Function 'operationCreate' has too many parameters (8). Maximum allowed is 5              max-params
+   706:13   warning  'countRestrictions' is never reassigned. Use 'const' instead                              prefer-const
+   725:17   warning  Expected { after 'if' condition                                                           curly
+   726:42   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   727:17   warning  Expected { after 'if' condition                                                           curly
+   749:5    warning  Function 'operationSummary' has too many parameters (6). Maximum allowed is 5             max-params
+   750:13   warning  'lname' is never reassigned. Use 'const' instead                                          prefer-const
+   751:13   warning  'sname' is never reassigned. Use 'const' instead                                          prefer-const
+   756:22   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   756:41   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   756:55   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   772:5    warning  Function 'operationRead' has too many parameters (10). Maximum allowed is 5               max-params
+   772:5    warning  Function 'operationRead' has a complexity of 27. Maximum allowed is 15                    complexity
+   777:13   warning  'countRestrictions' is never reassigned. Use 'const' instead                              prefer-const
+   779:13   warning  Expected { after 'if' condition                                                           curly
+   781:13   warning  Expected { after 'if' condition                                                           curly
+   783:39   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   785:17   warning  Expected { after 'if' condition                                                           curly
+   802:17   warning  Expected { after 'if' condition                                                           curly
+   803:38   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   804:17   warning  Expected { after 'if' condition                                                           curly
+   810:21   warning  Expected { after 'if' condition                                                           curly
+   828:13   warning  Expected { after 'if' condition                                                           curly
+   881:87   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   918:39   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   946:17   warning  Expected { after 'if' condition                                                           curly
+   997:14   warning  Expected to return a value at the end of function 'enumMember'                            consistent-return
+   998:27   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   999:13   warning  Expected { after 'if' condition                                                           curly
+  1000:32   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1001:13   warning  Expected { after 'if' condition                                                           curly
+  1009:25   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1010:13   warning  Expected { after 'if' condition                                                           curly
+  1012:13   warning  Expected { after 'else'                                                                   curly
+  1020:25   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1021:13   warning  Expected { after 'if' condition                                                           curly
+  1023:13   warning  Expected { after 'else'                                                                   curly
+  1125:73   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1187:5    warning  Function 'operationUpdate' has too many parameters (8). Maximum allowed is 5              max-params
+  1189:13   warning  'countRestrictions' is never reassigned. Use 'const' instead                              prefer-const
+  1207:17   warning  Expected { after 'if' condition                                                           curly
+  1224:5    warning  Function 'operationDelete' has too many parameters (8). Maximum allowed is 5              max-params
+  1226:13   warning  'countRestrictions' is never reassigned. Use 'const' instead                              prefer-const
+  1234:17   warning  Expected { after 'if' condition                                                           curly
+  1248:5    warning  Function 'pathItemsWithNavigation' has too many parameters (8). Maximum allowed is 5      max-params
+  1250:37   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1250:93   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1251:22   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1251:78   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1257:65   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1258:21   warning  Expected { after 'if' condition                                                           curly
+  1283:39   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1299:24   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1302:32   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1303:21   warning  Expected { after 'if' condition                                                           curly
+  1319:17   warning  Expected { after 'if' condition                                                           curly
+  1338:17   warning  Expected { after 'if' condition                                                           curly
+  1341:21   warning  Expected { after 'if' condition                                                           curly
+  1342:33   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1343:21   warning  Expected { after 'if' condition                                                           curly
+  1347:28   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1384:13   warning  Expected { after 'if' condition                                                           curly
+  1386:13   warning  Expected { after 'if' condition                                                           curly
+  1398:13   warning  Expected { after 'if' condition                                                           curly
+  1400:13   warning  Expected { after 'if' condition                                                           curly
+  1412:5    warning  Function 'pathItemsForBoundOperations' has too many parameters (6). Maximum allowed is 5  max-params
+  1419:37   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1420:17   warning  Expected { after 'if' condition                                                           curly
+  1422:17   warning  Expected { after 'else'                                                                   curly
+  1445:5    warning  Function 'pathItemAction' has too many parameters (7). Maximum allowed is 5               max-params
+  1461:13   warning  Expected { after 'if' condition                                                           curly
+  1463:13   warning  Expected { after 'if' condition                                                           curly
+  1466:13   warning  Expected { after 'if' condition                                                           curly
+  1506:5    warning  Function 'pathItemFunction' has too many parameters (7). Maximum allowed is 5             max-params
+  1510:13   warning  Expected { after 'if' condition                                                           curly
+  1514:28   warning  Arrow function has a complexity of 29. Maximum allowed is 15                              complexity
+  1520:17   warning  Expected { after 'if' condition                                                           curly
+  1523:42   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1525:49   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1541:21   warning  Expected { after 'if' condition                                                           curly
+  1543:21   warning  Expected { after 'else'                                                                   curly
+  1564:21   warning  Expected { after 'if' condition                                                           curly
+  1566:21   warning  Expected { after 'else'                                                                   curly
+  1569:25   warning  Expected { after 'if' condition                                                           curly
+  1571:25   warning  Expected { after 'else'                                                                   curly
+  1593:13   warning  Expected { after 'if' condition                                                           curly
+  1668:13   warning  'CountPropertyObj' is never reassigned. Use 'const' instead                               prefer-const
+  1669:18   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1748:17   warning  Expected { after 'if' condition                                                           curly
+  1835:13   warning  Expected { after 'if' condition                                                           curly
+  1851:13   warning  Expected { after 'if' condition                                                           curly
+  1877:41   warning  Arrow function has a complexity of 25. Maximum allowed is 15                              complexity
+  1880:17   warning  Expected { after 'if' condition                                                           curly
+  1884:32   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1888:52   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1890:25   warning  Expected { after 'if' condition                                                           curly
+  1892:25   warning  Expected { after 'if' condition                                                           curly
+  1897:25   warning  'index' is never reassigned. Use 'const' instead                                          prefer-const
+  1898:31   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1899:25   warning  Expected { after 'if' condition                                                           curly
+  1903:25   warning  Expected { after 'if' condition                                                           curly
+  1905:25   warning  Expected { after 'if' condition                                                           curly
+  1914:13   warning  Expected { after 'if' condition                                                           curly
+  1916:13   warning  Expected { after 'if' condition                                                           curly
+  1920:13   warning  Expected { after 'if' condition                                                           curly
+  1931:17   warning  Expected { after 'if' condition                                                           curly
+  1942:17   warning  Expected { after 'if' condition                                                           curly
+  1953:17   warning  Expected { after 'if' condition                                                           curly
+  2005:13   warning  Expected { after 'if' condition                                                           curly
+  2083:5    warning  Function 'getSchema' has too many lines (245). Maximum allowed is 100                     max-lines-per-function
+  2083:5    warning  Function 'getSchema' has a complexity of 73. Maximum allowed is 15                        complexity
+  2098:21   warning  Expected { after 'if' condition                                                           curly
+  2130:21   warning  Expected { after 'if' condition                                                           curly
+  2132:21   warning  Expected { after 'if' condition                                                           curly
+  2134:21   warning  'scale' is never reassigned. Use 'const' instead                                          prefer-const
+  2138:25   warning  Expected { after 'if' condition                                                           curly
+  2140:25   warning  Expected { after 'else'                                                                   curly
+  2143:25   warning  'limit' is never reassigned. Use 'const' instead                                          prefer-const
+  2144:25   warning  'delta' is never reassigned. Use 'const' instead                                          prefer-const
+  2211:21   warning  'jsonSchema' is never reassigned. Use 'const' instead                                     prefer-const
+  2213:43   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  2214:25   warning  Expected { after 'if' condition                                                           curly
+  2216:25   warning  Expected { after 'else'                                                                   curly
+  2229:21   warning  Expected { after 'if' condition                                                           curly
+  2244:25   warning  'type' is never reassigned. Use 'const' instead                                           prefer-const
+  2245:25   warning  'isStructured' is never reassigned. Use 'const' instead                                   prefer-const
+  2258:17   warning  Expected { after 'if' condition                                                           curly
+  2263:17   warning  Expected { after 'if' condition                                                           curly
+  2268:17   warning  Expected { after 'if' condition                                                           curly
+  2292:45   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  2294:17   warning  Expected { after 'if' condition                                                           curly
+  2299:17   warning  Expected { after 'if' condition                                                           curly
+  2301:45   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  2303:17   warning  Expected { after 'if' condition                                                           curly
+  2308:17   warning  Expected { after 'if' condition                                                           curly
+  2318:17   warning  Expected { after 'if' condition                                                           curly
+  2339:13   warning  Expected { after 'if' condition                                                           curly
+  2349:13   warning  Expected { after 'if' condition                                                           curly
+  2361:35   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  2362:17   warning  'parts' is never reassigned. Use 'const' instead                                          prefer-const
+  2372:17   warning  Expected { after 'if' condition                                                           curly
+  2391:17   warning  Expected { after 'if' condition                                                           curly
+  2412:25   warning  Expected { after 'if' condition                                                           curly
+  2420:25   warning  Expected { after 'if' condition                                                           curly
+  2428:25   warning  Expected { after 'if' condition                                                           curly
+  2437:25   warning  Expected { after 'if' condition                                                           curly
+  2449:17   warning  Expected { after 'if' condition                                                           curly
+  2452:13   warning  Expected { after 'if' condition                                                           curly
+  2471:13   warning  Expected { after 'if' condition                                                           curly
+  2484:13   warning  'np' is never reassigned. Use 'const' instead                                             prefer-const
+
+/workspace/dist/lib/compile/csdl2openapi.original.js
+     6:1    warning  Unexpected var, use let or const instead                                                  no-var
+    73:31   warning  Function has too many lines (1978). Maximum allowed is 100                                max-lines-per-function
+    90:13   warning  'serviceName' is never reassigned. Use 'const' instead                                    prefer-const
+    93:21   warning  'type' is never reassigned. Use 'const' instead                                           prefer-const
+    95:21   warning  Expected { after 'if' condition                                                           curly
+   121:13   warning  'extensionObj' is never reassigned. Use 'const' instead                                   prefer-const
+   145:13   warning  'extensionEnums' is never reassigned. Use 'const' instead                                 prefer-const
+   153:13   warning  'extenstionSchema' is never reassigned. Use 'const' instead                               prefer-const
+   182:25   warning  Blocks are nested too deeply (5). Maximum allowed is 4                                    max-depth
+   222:5    warning  Function 'preProcess' has too many parameters (7). Maximum allowed is 5                   max-params
+   248:29   warning  Expected { after 'if' condition                                                           curly
+   255:25   warning  Expected { after 'if' condition                                                           curly
+   264:26   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   269:25   warning  'args' is never reassigned. Use 'const' instead                                           prefer-const
+   270:74   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   271:43   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   272:30   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   273:41   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   274:34   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   283:40   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   300:49   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   301:37   warning  Blocks are nested too deeply (5). Maximum allowed is 4                                    max-depth
+   302:41   warning  Expected { after 'if' condition                                                           curly
+   305:92   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   344:57   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   345:21   warning  Expected { after 'if' condition                                                           curly
+   393:13   warning  'externalDocs' is never reassigned. Use 'const' instead                                   prefer-const
+   412:13   warning  'color' is never reassigned. Use 'const' instead                                          prefer-const
+   420:52   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   424:40   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   424:86   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   426:142  warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   430:52   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   433:52   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   471:21   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   582:17   warning  Expected { after 'if' condition                                                           curly
+   596:17   warning  'child' is never reassigned. Use 'const' instead                                          prefer-const
+   615:13   warning  Expected { after 'if' condition                                                           curly
+   631:5    warning  Function 'pathItems' has too many parameters (10). Maximum allowed is 5                   max-params
+   639:13   warning  Expected { after 'if' condition                                                           curly
+   648:21   warning  Expected { after 'if' condition                                                           curly
+   662:13   warning  Expected { after 'if' condition                                                           curly
+   672:129  warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   708:5    warning  Function 'pathItemsWithKey' has too many parameters (12). Maximum allowed is 5            max-params
+   709:91   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   710:41   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   710:80   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   725:21   warning  Expected { after 'if' condition                                                           curly
+   742:5    warning  Function 'operationCreate' has too many parameters (8). Maximum allowed is 5              max-params
+   744:13   warning  'countRestrictions' is never reassigned. Use 'const' instead                              prefer-const
+   763:17   warning  Expected { after 'if' condition                                                           curly
+   764:42   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   765:17   warning  Expected { after 'if' condition                                                           curly
+   787:5    warning  Function 'operationSummary' has too many parameters (6). Maximum allowed is 5             max-params
+   788:13   warning  'lname' is never reassigned. Use 'const' instead                                          prefer-const
+   789:13   warning  'sname' is never reassigned. Use 'const' instead                                          prefer-const
+   794:22   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   794:41   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   794:55   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   810:5    warning  Function 'operationRead' has too many parameters (10). Maximum allowed is 5               max-params
+   810:5    warning  Function 'operationRead' has a complexity of 27. Maximum allowed is 15                    complexity
+   815:13   warning  'countRestrictions' is never reassigned. Use 'const' instead                              prefer-const
+   817:13   warning  Expected { after 'if' condition                                                           curly
+   819:13   warning  Expected { after 'if' condition                                                           curly
+   821:39   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   823:17   warning  Expected { after 'if' condition                                                           curly
+   840:17   warning  Expected { after 'if' condition                                                           curly
+   841:38   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   842:17   warning  Expected { after 'if' condition                                                           curly
+   848:21   warning  Expected { after 'if' condition                                                           curly
+   866:13   warning  Expected { after 'if' condition                                                           curly
+   919:87   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   956:39   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   984:17   warning  Expected { after 'if' condition                                                           curly
+  1035:14   warning  Expected to return a value at the end of function 'enumMember'                            consistent-return
+  1036:27   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1037:13   warning  Expected { after 'if' condition                                                           curly
+  1038:32   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1039:13   warning  Expected { after 'if' condition                                                           curly
+  1047:25   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1048:13   warning  Expected { after 'if' condition                                                           curly
+  1050:13   warning  Expected { after 'else'                                                                   curly
+  1058:25   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1059:13   warning  Expected { after 'if' condition                                                           curly
+  1061:13   warning  Expected { after 'else'                                                                   curly
+  1163:73   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1225:5    warning  Function 'operationUpdate' has too many parameters (8). Maximum allowed is 5              max-params
+  1227:13   warning  'countRestrictions' is never reassigned. Use 'const' instead                              prefer-const
+  1245:17   warning  Expected { after 'if' condition                                                           curly
+  1262:5    warning  Function 'operationDelete' has too many parameters (8). Maximum allowed is 5              max-params
+  1264:13   warning  'countRestrictions' is never reassigned. Use 'const' instead                              prefer-const
+  1272:17   warning  Expected { after 'if' condition                                                           curly
+  1286:5    warning  Function 'pathItemsWithNavigation' has too many parameters (8). Maximum allowed is 5      max-params
+  1288:37   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1288:93   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1289:22   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1289:78   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1295:65   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1296:21   warning  Expected { after 'if' condition                                                           curly
+  1321:39   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1337:24   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1340:32   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1341:21   warning  Expected { after 'if' condition                                                           curly
+  1357:17   warning  Expected { after 'if' condition                                                           curly
+  1376:17   warning  Expected { after 'if' condition                                                           curly
+  1379:21   warning  Expected { after 'if' condition                                                           curly
+  1380:33   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1381:21   warning  Expected { after 'if' condition                                                           curly
+  1385:28   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1422:13   warning  Expected { after 'if' condition                                                           curly
+  1424:13   warning  Expected { after 'if' condition                                                           curly
+  1436:13   warning  Expected { after 'if' condition                                                           curly
+  1438:13   warning  Expected { after 'if' condition                                                           curly
+  1450:5    warning  Function 'pathItemsForBoundOperations' has too many parameters (6). Maximum allowed is 5  max-params
+  1457:37   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1458:17   warning  Expected { after 'if' condition                                                           curly
+  1460:17   warning  Expected { after 'else'                                                                   curly
+  1483:5    warning  Function 'pathItemAction' has too many parameters (7). Maximum allowed is 5               max-params
+  1499:13   warning  Expected { after 'if' condition                                                           curly
+  1501:13   warning  Expected { after 'if' condition                                                           curly
+  1504:13   warning  Expected { after 'if' condition                                                           curly
+  1544:5    warning  Function 'pathItemFunction' has too many parameters (7). Maximum allowed is 5             max-params
+  1548:13   warning  Expected { after 'if' condition                                                           curly
+  1552:28   warning  Arrow function has a complexity of 29. Maximum allowed is 15                              complexity
+  1558:17   warning  Expected { after 'if' condition                                                           curly
+  1561:42   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1563:49   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1579:21   warning  Expected { after 'if' condition                                                           curly
+  1581:21   warning  Expected { after 'else'                                                                   curly
+  1602:21   warning  Expected { after 'if' condition                                                           curly
+  1604:21   warning  Expected { after 'else'                                                                   curly
+  1607:25   warning  Expected { after 'if' condition                                                           curly
+  1609:25   warning  Expected { after 'else'                                                                   curly
+  1631:13   warning  Expected { after 'if' condition                                                           curly
+  1706:13   warning  'CountPropertyObj' is never reassigned. Use 'const' instead                               prefer-const
+  1707:18   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1786:17   warning  Expected { after 'if' condition                                                           curly
+  1873:13   warning  Expected { after 'if' condition                                                           curly
+  1889:13   warning  Expected { after 'if' condition                                                           curly
+  1915:41   warning  Arrow function has a complexity of 25. Maximum allowed is 15                              complexity
+  1918:17   warning  Expected { after 'if' condition                                                           curly
+  1922:32   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1926:52   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1928:25   warning  Expected { after 'if' condition                                                           curly
+  1930:25   warning  Expected { after 'if' condition                                                           curly
+  1935:25   warning  'index' is never reassigned. Use 'const' instead                                          prefer-const
+  1936:31   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1937:25   warning  Expected { after 'if' condition                                                           curly
+  1941:25   warning  Expected { after 'if' condition                                                           curly
+  1943:25   warning  Expected { after 'if' condition                                                           curly
+  1952:13   warning  Expected { after 'if' condition                                                           curly
+  1954:13   warning  Expected { after 'if' condition                                                           curly
+  1958:13   warning  Expected { after 'if' condition                                                           curly
+  1969:17   warning  Expected { after 'if' condition                                                           curly
+  1980:17   warning  Expected { after 'if' condition                                                           curly
+  1991:17   warning  Expected { after 'if' condition                                                           curly
+  2043:13   warning  Expected { after 'if' condition                                                           curly
+  2121:5    warning  Function 'getSchema' has too many lines (245). Maximum allowed is 100                     max-lines-per-function
+  2121:5    warning  Function 'getSchema' has a complexity of 73. Maximum allowed is 15                        complexity
+  2136:21   warning  Expected { after 'if' condition                                                           curly
+  2168:21   warning  Expected { after 'if' condition                                                           curly
+  2170:21   warning  Expected { after 'if' condition                                                           curly
+  2172:21   warning  'scale' is never reassigned. Use 'const' instead                                          prefer-const
+  2176:25   warning  Expected { after 'if' condition                                                           curly
+  2178:25   warning  Expected { after 'else'                                                                   curly
+  2181:25   warning  'limit' is never reassigned. Use 'const' instead                                          prefer-const
+  2182:25   warning  'delta' is never reassigned. Use 'const' instead                                          prefer-const
+  2249:21   warning  'jsonSchema' is never reassigned. Use 'const' instead                                     prefer-const
+  2251:43   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  2252:25   warning  Expected { after 'if' condition                                                           curly
+  2254:25   warning  Expected { after 'else'                                                                   curly
+  2267:21   warning  Expected { after 'if' condition                                                           curly
+  2282:25   warning  'type' is never reassigned. Use 'const' instead                                           prefer-const
+  2283:25   warning  'isStructured' is never reassigned. Use 'const' instead                                   prefer-const
+  2296:17   warning  Expected { after 'if' condition                                                           curly
+  2301:17   warning  Expected { after 'if' condition                                                           curly
+  2306:17   warning  Expected { after 'if' condition                                                           curly
+  2330:45   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  2332:17   warning  Expected { after 'if' condition                                                           curly
+  2337:17   warning  Expected { after 'if' condition                                                           curly
+  2339:45   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  2341:17   warning  Expected { after 'if' condition                                                           curly
+  2346:17   warning  Expected { after 'if' condition                                                           curly
+  2356:17   warning  Expected { after 'if' condition                                                           curly
+  2377:13   warning  Expected { after 'if' condition                                                           curly
+  2387:13   warning  Expected { after 'if' condition                                                           curly
+  2399:35   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  2400:17   warning  'parts' is never reassigned. Use 'const' instead                                          prefer-const
+  2410:17   warning  Expected { after 'if' condition                                                           curly
+  2429:17   warning  Expected { after 'if' condition                                                           curly
+  2450:25   warning  Expected { after 'if' condition                                                           curly
+  2458:25   warning  Expected { after 'if' condition                                                           curly
+  2466:25   warning  Expected { after 'if' condition                                                           curly
+  2475:25   warning  Expected { after 'if' condition                                                           curly
+  2487:17   warning  Expected { after 'if' condition                                                           curly
+  2490:13   warning  Expected { after 'if' condition                                                           curly
+  2509:13   warning  Expected { after 'if' condition                                                           curly
+  2522:13   warning  'np' is never reassigned. Use 'const' instead                                             prefer-const
+
+/workspace/dist/lib/compile/index.js
+   33:24  warning  'metadata' is never reassigned. Use 'const' instead                prefer-const
+   45:17  warning  Expected '!==' and instead saw '!='                                eqeqeq
+   58:13  warning  'sOptions' is never reassigned. Use 'const' instead                prefer-const
+   59:13  warning  'url' is never reassigned. Use 'const' instead                     prefer-const
+   60:22  warning  Expected '===' and instead saw '=='                                eqeqeq
+  107:13  warning  'keys' is never reassigned. Use 'const' instead                    prefer-const
+  108:13  warning  'urls' is never reassigned. Use 'const' instead                    prefer-const
+  120:10  warning  Expected to return a value at the end of function '_getProtocols'  consistent-return
+  124:13  warning  'protocols' is never reassigned. Use 'const' instead               prefer-const
+  155:10  warning  Expected to return a value at the end of function '_servicePath'   consistent-return
+  159:13  warning  'paths' is never reassigned. Use 'const' instead                   prefer-const
+
+/workspace/dist/lib/compile/modules/utils/naming.js
+  41:9  warning  'np' is never reassigned. Use 'const' instead  prefer-const
+
+/workspace/dist/lib/compile/modules/validators/index.js
+  10:10  warning  Expected to return a value at the end of function 'enumMember'  consistent-return
+  11:23  warning  Expected '===' and instead saw '=='                             eqeqeq
+  12:9   warning  Expected { after 'if' condition                                 curly
+  13:28  warning  Expected '===' and instead saw '=='                             eqeqeq
+  14:9   warning  Expected { after 'if' condition                                 curly
+  22:21  warning  Expected '===' and instead saw '=='                             eqeqeq
+  23:9   warning  Expected { after 'if' condition                                 curly
+  25:9   warning  Expected { after 'else'                                         curly
+  33:21  warning  Expected '===' and instead saw '=='                             eqeqeq
+  34:9   warning  Expected { after 'if' condition                                 curly
+  36:9   warning  Expected { after 'else'                                         curly
+
+/workspace/lib/compile/csdl2openapi.js
+     5:1    warning  Unexpected var, use let or const instead                                                  no-var
+    10:9    warning  'nameParts' is assigned a value but never used                                            no-unused-vars
+    10:20   warning  'isIdentifier' is assigned a value but never used                                         no-unused-vars
+    10:34   warning  'splitName' is assigned a value but never used                                            no-unused-vars
+    10:45   warning  'namespaceQualifiedName' is assigned a value but never used                               no-unused-vars
+    11:7    warning  'validators' is assigned a value but never used                                           no-unused-vars
+    39:31   warning  Function has too many lines (1912). Maximum allowed is 100                                max-lines-per-function
+    70:13   warning  'serviceName' is never reassigned. Use 'const' instead                                    prefer-const
+    73:21   warning  'type' is never reassigned. Use 'const' instead                                           prefer-const
+    75:21   warning  Expected { after 'if' condition                                                           curly
+   105:13   warning  'extensionObj' is never reassigned. Use 'const' instead                                   prefer-const
+   129:13   warning  'extensionEnums' is never reassigned. Use 'const' instead                                 prefer-const
+   138:13   warning  'extenstionSchema' is never reassigned. Use 'const' instead                               prefer-const
+   169:25   warning  Blocks are nested too deeply (5). Maximum allowed is 4                                    max-depth
+   219:5    warning  Function 'preProcess' has too many parameters (7). Maximum allowed is 5                   max-params
+   263:26   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   267:25   warning  'args' is never reassigned. Use 'const' instead                                           prefer-const
+   270:45   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   271:51   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   272:38   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   273:45   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   274:38   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   283:44   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   299:49   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   300:37   warning  Blocks are nested too deeply (5). Maximum allowed is 4                                    max-depth
+   301:41   warning  Expected { after 'if' condition                                                           curly
+   303:92   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   342:57   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   343:21   warning  Expected { after 'if' condition                                                           curly
+   394:13   warning  'externalDocs' is never reassigned. Use 'const' instead                                   prefer-const
+   414:13   warning  'color' is never reassigned. Use 'const' instead                                          prefer-const
+   423:56   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   427:44   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   427:90   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   429:146  warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   433:56   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   436:56   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   474:21   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   605:17   warning  'child' is never reassigned. Use 'const' instead                                          prefer-const
+   637:5    warning  Function 'pathItems' has too many parameters (10). Maximum allowed is 5                   max-params
+   656:21   warning  Expected { after 'if' condition                                                           curly
+   670:13   warning  Expected { after 'if' condition                                                           curly
+   681:129  warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   719:5    warning  Function 'pathItemsWithKey' has too many parameters (12). Maximum allowed is 5            max-params
+   720:91   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   721:41   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   721:80   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   737:21   warning  Expected { after 'if' condition                                                           curly
+   756:5    warning  Function 'operationCreate' has too many parameters (8). Maximum allowed is 5              max-params
+   758:13   warning  'countRestrictions' is never reassigned. Use 'const' instead                              prefer-const
+   777:42   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   801:5    warning  Function 'operationSummary' has too many parameters (6). Maximum allowed is 5             max-params
+   802:13   warning  'lname' is never reassigned. Use 'const' instead                                          prefer-const
+   803:13   warning  'sname' is never reassigned. Use 'const' instead                                          prefer-const
+   809:22   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   809:41   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   809:55   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   826:5    warning  Function 'operationRead' has too many parameters (10). Maximum allowed is 5               max-params
+   826:5    warning  Function 'operationRead' has a complexity of 27. Maximum allowed is 15                    complexity
+   831:13   warning  'countRestrictions' is never reassigned. Use 'const' instead                              prefer-const
+   833:13   warning  Expected { after 'if' condition                                                           curly
+   835:13   warning  Expected { after 'if' condition                                                           curly
+   838:39   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   857:38   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   886:13   warning  Expected { after 'if' condition                                                           curly
+   945:87   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   983:39   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1012:17   warning  Expected { after 'if' condition                                                           curly
+  1068:14   warning  Expected to return a value at the end of function 'enumMember'                            consistent-return
+  1069:27   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1070:13   warning  Expected { after 'if' condition                                                           curly
+  1071:32   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1072:13   warning  Expected { after 'if' condition                                                           curly
+  1081:25   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1082:13   warning  Expected { after 'if' condition                                                           curly
+  1084:13   warning  Expected { after 'else'                                                                   curly
+  1093:25   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1094:13   warning  Expected { after 'if' condition                                                           curly
+  1096:13   warning  Expected { after 'else'                                                                   curly
+  1215:73   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1284:5    warning  Function 'operationUpdate' has too many parameters (8). Maximum allowed is 5              max-params
+  1286:13   warning  'countRestrictions' is never reassigned. Use 'const' instead                              prefer-const
+  1321:5    warning  Function 'operationDelete' has too many parameters (8). Maximum allowed is 5              max-params
+  1323:13   warning  'countRestrictions' is never reassigned. Use 'const' instead                              prefer-const
+  1345:5    warning  Function 'pathItemsWithNavigation' has too many parameters (8). Maximum allowed is 5      max-params
+  1347:37   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1347:93   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1348:22   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1348:78   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1355:65   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1382:39   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1398:24   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1401:32   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1402:21   warning  Expected { after 'if' condition                                                           curly
+  1439:17   warning  Expected { after 'if' condition                                                           curly
+  1442:33   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1446:28   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1509:5    warning  Function 'pathItemsForBoundOperations' has too many parameters (6). Maximum allowed is 5  max-params
+  1516:37   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1517:17   warning  Expected { after 'if' condition                                                           curly
+  1519:17   warning  Expected { after 'else'                                                                   curly
+  1544:5    warning  Function 'pathItemAction' has too many parameters (7). Maximum allowed is 5               max-params
+  1604:5    warning  Function 'pathItemFunction' has too many parameters (7). Maximum allowed is 5             max-params
+  1613:28   warning  Arrow function has a complexity of 29. Maximum allowed is 15                              complexity
+  1621:42   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1623:49   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1659:21   warning  Expected { after 'if' condition                                                           curly
+  1661:21   warning  Expected { after 'else'                                                                   curly
+  1763:13   warning  'CountPropertyObj' is never reassigned. Use 'const' instead                               prefer-const
+  1764:18   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1991:41   warning  Arrow function has a complexity of 25. Maximum allowed is 15                              complexity
+  1995:32   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1999:52   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  2001:25   warning  Expected { after 'if' condition                                                           curly
+  2003:25   warning  Expected { after 'if' condition                                                           curly
+  2007:25   warning  'index' is never reassigned. Use 'const' instead                                          prefer-const
+  2008:31   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  2012:25   warning  Expected { after 'if' condition                                                           curly
+  2014:25   warning  Expected { after 'if' condition                                                           curly
+  2025:13   warning  Expected { after 'if' condition                                                           curly
+  2032:13   warning  Expected { after 'if' condition                                                           curly
+  2120:37   warning  Expected { after 'if' condition                                                           curly
+  2204:5    warning  Function 'getSchema' has too many lines (231). Maximum allowed is 100                     max-lines-per-function
+  2204:5    warning  Function 'getSchema' has a complexity of 73. Maximum allowed is 15                        complexity
+  2252:21   warning  'scale' is never reassigned. Use 'const' instead                                          prefer-const
+  2256:25   warning  Expected { after 'if' condition                                                           curly
+  2258:25   warning  Expected { after 'else'                                                                   curly
+  2261:25   warning  'limit' is never reassigned. Use 'const' instead                                          prefer-const
+  2262:25   warning  'delta' is never reassigned. Use 'const' instead                                          prefer-const
+  2329:21   warning  'jsonSchema' is never reassigned. Use 'const' instead                                     prefer-const
+  2331:43   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  2332:25   warning  Expected { after 'if' condition                                                           curly
+  2334:25   warning  Expected { after 'else'                                                                   curly
+  2359:25   warning  'type' is never reassigned. Use 'const' instead                                           prefer-const
+  2360:25   warning  'isStructured' is never reassigned. Use 'const' instead                                   prefer-const
+  2410:45   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  2418:45   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  2480:35   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  2481:17   warning  'parts' is never reassigned. Use 'const' instead                                          prefer-const
+  2598:13   warning  'np' is never reassigned. Use 'const' instead                                             prefer-const
+
+/workspace/lib/compile/csdl2openapi.original.js
+     5:1    warning  Unexpected var, use let or const instead                                                  no-var
+    82:31   warning  Function has too many lines (1912). Maximum allowed is 100                                max-lines-per-function
+   113:13   warning  'serviceName' is never reassigned. Use 'const' instead                                    prefer-const
+   116:21   warning  'type' is never reassigned. Use 'const' instead                                           prefer-const
+   118:21   warning  Expected { after 'if' condition                                                           curly
+   148:13   warning  'extensionObj' is never reassigned. Use 'const' instead                                   prefer-const
+   172:13   warning  'extensionEnums' is never reassigned. Use 'const' instead                                 prefer-const
+   181:13   warning  'extenstionSchema' is never reassigned. Use 'const' instead                               prefer-const
+   212:25   warning  Blocks are nested too deeply (5). Maximum allowed is 4                                    max-depth
+   262:5    warning  Function 'preProcess' has too many parameters (7). Maximum allowed is 5                   max-params
+   306:26   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   310:25   warning  'args' is never reassigned. Use 'const' instead                                           prefer-const
+   313:45   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   314:51   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   315:38   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   316:45   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   317:38   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   326:44   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   342:49   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   343:37   warning  Blocks are nested too deeply (5). Maximum allowed is 4                                    max-depth
+   344:41   warning  Expected { after 'if' condition                                                           curly
+   346:92   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   385:57   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   386:21   warning  Expected { after 'if' condition                                                           curly
+   437:13   warning  'externalDocs' is never reassigned. Use 'const' instead                                   prefer-const
+   457:13   warning  'color' is never reassigned. Use 'const' instead                                          prefer-const
+   466:56   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   470:44   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   470:90   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   472:146  warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   476:56   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   479:56   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   517:21   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   648:17   warning  'child' is never reassigned. Use 'const' instead                                          prefer-const
+   680:5    warning  Function 'pathItems' has too many parameters (10). Maximum allowed is 5                   max-params
+   699:21   warning  Expected { after 'if' condition                                                           curly
+   713:13   warning  Expected { after 'if' condition                                                           curly
+   724:129  warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   762:5    warning  Function 'pathItemsWithKey' has too many parameters (12). Maximum allowed is 5            max-params
+   763:91   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   764:41   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   764:80   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   780:21   warning  Expected { after 'if' condition                                                           curly
+   799:5    warning  Function 'operationCreate' has too many parameters (8). Maximum allowed is 5              max-params
+   801:13   warning  'countRestrictions' is never reassigned. Use 'const' instead                              prefer-const
+   820:42   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   844:5    warning  Function 'operationSummary' has too many parameters (6). Maximum allowed is 5             max-params
+   845:13   warning  'lname' is never reassigned. Use 'const' instead                                          prefer-const
+   846:13   warning  'sname' is never reassigned. Use 'const' instead                                          prefer-const
+   852:22   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   852:41   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   852:55   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   869:5    warning  Function 'operationRead' has too many parameters (10). Maximum allowed is 5               max-params
+   869:5    warning  Function 'operationRead' has a complexity of 27. Maximum allowed is 15                    complexity
+   874:13   warning  'countRestrictions' is never reassigned. Use 'const' instead                              prefer-const
+   876:13   warning  Expected { after 'if' condition                                                           curly
+   878:13   warning  Expected { after 'if' condition                                                           curly
+   881:39   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+   900:38   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+   929:13   warning  Expected { after 'if' condition                                                           curly
+   988:87   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1026:39   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1055:17   warning  Expected { after 'if' condition                                                           curly
+  1111:14   warning  Expected to return a value at the end of function 'enumMember'                            consistent-return
+  1112:27   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1113:13   warning  Expected { after 'if' condition                                                           curly
+  1114:32   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1115:13   warning  Expected { after 'if' condition                                                           curly
+  1124:25   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1125:13   warning  Expected { after 'if' condition                                                           curly
+  1127:13   warning  Expected { after 'else'                                                                   curly
+  1136:25   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1137:13   warning  Expected { after 'if' condition                                                           curly
+  1139:13   warning  Expected { after 'else'                                                                   curly
+  1258:73   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1327:5    warning  Function 'operationUpdate' has too many parameters (8). Maximum allowed is 5              max-params
+  1329:13   warning  'countRestrictions' is never reassigned. Use 'const' instead                              prefer-const
+  1364:5    warning  Function 'operationDelete' has too many parameters (8). Maximum allowed is 5              max-params
+  1366:13   warning  'countRestrictions' is never reassigned. Use 'const' instead                              prefer-const
+  1388:5    warning  Function 'pathItemsWithNavigation' has too many parameters (8). Maximum allowed is 5      max-params
+  1390:37   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1390:93   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1391:22   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1391:78   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1398:65   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1425:39   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1441:24   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1444:32   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1445:21   warning  Expected { after 'if' condition                                                           curly
+  1482:17   warning  Expected { after 'if' condition                                                           curly
+  1485:33   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  1489:28   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1552:5    warning  Function 'pathItemsForBoundOperations' has too many parameters (6). Maximum allowed is 5  max-params
+  1559:37   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1560:17   warning  Expected { after 'if' condition                                                           curly
+  1562:17   warning  Expected { after 'else'                                                                   curly
+  1587:5    warning  Function 'pathItemAction' has too many parameters (7). Maximum allowed is 5               max-params
+  1647:5    warning  Function 'pathItemFunction' has too many parameters (7). Maximum allowed is 5             max-params
+  1656:28   warning  Arrow function has a complexity of 29. Maximum allowed is 15                              complexity
+  1664:42   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1666:49   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  1702:21   warning  Expected { after 'if' condition                                                           curly
+  1704:21   warning  Expected { after 'else'                                                                   curly
+  1806:13   warning  'CountPropertyObj' is never reassigned. Use 'const' instead                               prefer-const
+  1807:18   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  2034:41   warning  Arrow function has a complexity of 25. Maximum allowed is 15                              complexity
+  2038:32   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  2042:52   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  2044:25   warning  Expected { after 'if' condition                                                           curly
+  2046:25   warning  Expected { after 'if' condition                                                           curly
+  2050:25   warning  'index' is never reassigned. Use 'const' instead                                          prefer-const
+  2051:31   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  2055:25   warning  Expected { after 'if' condition                                                           curly
+  2057:25   warning  Expected { after 'if' condition                                                           curly
+  2068:13   warning  Expected { after 'if' condition                                                           curly
+  2075:13   warning  Expected { after 'if' condition                                                           curly
+  2163:37   warning  Expected { after 'if' condition                                                           curly
+  2247:5    warning  Function 'getSchema' has too many lines (231). Maximum allowed is 100                     max-lines-per-function
+  2247:5    warning  Function 'getSchema' has a complexity of 73. Maximum allowed is 15                        complexity
+  2295:21   warning  'scale' is never reassigned. Use 'const' instead                                          prefer-const
+  2299:25   warning  Expected { after 'if' condition                                                           curly
+  2301:25   warning  Expected { after 'else'                                                                   curly
+  2304:25   warning  'limit' is never reassigned. Use 'const' instead                                          prefer-const
+  2305:25   warning  'delta' is never reassigned. Use 'const' instead                                          prefer-const
+  2372:21   warning  'jsonSchema' is never reassigned. Use 'const' instead                                     prefer-const
+  2374:43   warning  Expected '===' and instead saw '=='                                                       eqeqeq
+  2375:25   warning  Expected { after 'if' condition                                                           curly
+  2377:25   warning  Expected { after 'else'                                                                   curly
+  2402:25   warning  'type' is never reassigned. Use 'const' instead                                           prefer-const
+  2403:25   warning  'isStructured' is never reassigned. Use 'const' instead                                   prefer-const
+  2453:45   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  2461:45   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  2523:35   warning  Expected '!==' and instead saw '!='                                                       eqeqeq
+  2524:17   warning  'parts' is never reassigned. Use 'const' instead                                          prefer-const
+  2641:13   warning  'np' is never reassigned. Use 'const' instead                                             prefer-const
+
+/workspace/lib/compile/index.js
+   34:22  warning  'metadata' is never reassigned. Use 'const' instead                prefer-const
+   47:13  warning  Expected '!==' and instead saw '!='                                eqeqeq
+   62:9   warning  'sOptions' is never reassigned. Use 'const' instead                prefer-const
+   63:9   warning  'url' is never reassigned. Use 'const' instead                     prefer-const
+   65:18  warning  Expected '===' and instead saw '=='                                eqeqeq
+  115:9   warning  'keys' is never reassigned. Use 'const' instead                    prefer-const
+  117:9   warning  'urls' is never reassigned. Use 'const' instead                    prefer-const
+  132:10  warning  Expected to return a value at the end of function '_getProtocols'  consistent-return
+  136:9   warning  'protocols' is never reassigned. Use 'const' instead               prefer-const
+  170:10  warning  Expected to return a value at the end of function '_servicePath'   consistent-return
+  174:9   warning  'paths' is never reassigned. Use 'const' instead                   prefer-const
+
+/workspace/lib/compile/modules/utils/naming.js
+  44:9  warning  'np' is never reassigned. Use 'const' instead  prefer-const
+
+/workspace/lib/compile/modules/validators/index.js
+  10:10  warning  Expected to return a value at the end of function 'enumMember'  consistent-return
+  11:23  warning  Expected '===' and instead saw '=='                             eqeqeq
+  12:9   warning  Expected { after 'if' condition                                 curly
+  13:28  warning  Expected '===' and instead saw '=='                             eqeqeq
+  14:9   warning  Expected { after 'if' condition                                 curly
+  23:21  warning  Expected '===' and instead saw '=='                             eqeqeq
+  24:9   warning  Expected { after 'if' condition                                 curly
+  26:9   warning  Expected { after 'else'                                         curly
+  35:21  warning  Expected '===' and instead saw '=='                             eqeqeq
+  36:9   warning  Expected { after 'if' condition                                 curly
+  38:9   warning  Expected { after 'else'                                         curly
+
+/workspace/test/lib/compile/csdl2openapi.test.js
+    85:24  warning  Function has too many lines (2157). Maximum allowed is 100  max-lines-per-function
+   182:68  warning  Function has too many lines (202). Maximum allowed is 100   max-lines-per-function
+   375:9   warning  Unexpected console statement                                no-console
+   376:9   warning  Unexpected console statement                                no-console
+   886:35  warning  Function has too many lines (101). Maximum allowed is 100   max-lines-per-function
+  1036:59  warning  Function has too many lines (143). Maximum allowed is 100   max-lines-per-function
+  1180:23  warning  Function has too many lines (174). Maximum allowed is 100   max-lines-per-function
+  1355:47  warning  Function has too many lines (176). Maximum allowed is 100   max-lines-per-function
+  1532:23  warning  Function has too many lines (148). Maximum allowed is 100   max-lines-per-function
+  1682:96  warning  Function has too many lines (175). Maximum allowed is 100   max-lines-per-function
+  1930:89  warning  Expected '===' and instead saw '=='                         eqeqeq
+  1933:29  warning  Function has too many lines (149). Maximum allowed is 100   max-lines-per-function
+  2388:5   warning  Unexpected console statement                                no-console
+  2391:24  warning  Function has too many lines (161). Maximum allowed is 100   max-lines-per-function
+  2393:76  warning  Function has too many lines (159). Maximum allowed is 100   max-lines-per-function
+  2569:76  warning  Expected '!==' and instead saw '!='                         eqeqeq
+
+/workspace/test/lib/compile/openapi.test.js
+  76:28  warning  Arrow function has too many lines (444). Maximum allowed is 100  max-lines-per-function
+
+✖ 740 problems (0 errors, 740 warnings)
+  0 errors and 425 warnings potentially fixable with the `--fix` option.
+
+Exit code: 0
