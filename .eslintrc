@@ -10,7 +10,17 @@
         "ecmaVersion": "latest"
     },
     "rules": {
-      "no-unused-vars": ["warn", { "argsIgnorePattern": "lazy" }],
-      "no-extra-semi": 1
+      "no-unused-vars": ["warn", { "argsIgnorePattern": "lazy|^_" }],
+      "no-extra-semi": 1,
+      "complexity": ["warn", 15],
+      "max-lines-per-function": ["warn", { "max": 100, "skipBlankLines": true, "skipComments": true }],
+      "max-depth": ["warn", 4],
+      "max-params": ["warn", 5],
+      "no-console": ["warn", { "allow": ["warn", "error", "assert"] }],
+      "prefer-const": "warn",
+      "no-var": "warn",
+      "eqeqeq": ["warn", "always", { "null": "ignore" }],
+      "curly": ["warn", "multi-line"],
+      "consistent-return": "warn"
     }
 }
